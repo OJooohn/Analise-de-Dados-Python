@@ -57,6 +57,78 @@ plt.grid(True, linestyle='--', alpha=0.7, color='gray')
 plt.grid(True)
 plt.show()
 
+# VENDAS DE JOGOS POR GÊNERO (NA)
+plt.style.use('seaborn-v0_8-darkgrid')
+
+sales_by_genre = df.groupby('Genre')['NA_Sales'].sum().reset_index()
+sales_by_genre = sales_by_genre.sort_values(by='NA_Sales', ascending=False)
+
+colors = sns.color_palette("coolwarm", len(sales_by_genre))
+
+plt.figure(figsize=(12, 6))
+barplot = sns.barplot(x='Genre', y='NA_Sales', data=sales_by_genre, hue='Genre', palette=colors)
+
+plt.title('Vendas de Jogos por Gênero (NA)', fontsize=16, fontweight='bold')
+plt.xlabel('Gênero', fontsize=12)
+plt.ylabel('Vendas Totais na NA (Milhões)', fontsize=12)
+
+plt.xticks(rotation=45, ha='right')
+
+for index, value in enumerate(sales_by_genre['NA_Sales']):
+    barplot.text(index, value + 0.1, f'{value:.2f}', color='black', ha="center", fontsize=10)
+
+plt.tight_layout()
+
+plt.show()
+
+# VENDAS DE JOGOS POR GÊNERO (EU)
+plt.style.use('seaborn-v0_8-darkgrid')
+
+sales_by_genre = df.groupby('Genre')['EU_Sales'].sum().reset_index()
+sales_by_genre = sales_by_genre.sort_values(by='EU_Sales', ascending=False)
+
+colors = sns.color_palette("coolwarm", len(sales_by_genre))
+
+plt.figure(figsize=(12, 6))
+barplot = sns.barplot(x='Genre', y='EU_Sales', data=sales_by_genre, hue='Genre', palette=colors)
+
+plt.title('Vendas de Jogos por Gênero (EU)', fontsize=16, fontweight='bold')
+plt.xlabel('Gênero', fontsize=12)
+plt.ylabel('Vendas Totais na EU (Milhões)', fontsize=12)
+
+plt.xticks(rotation=45, ha='right')
+
+for index, value in enumerate(sales_by_genre['EU_Sales']):
+    barplot.text(index, value + 0.05, f'{value:.2f}', color='black', ha="center", fontsize=10)
+
+plt.tight_layout()
+
+plt.show()
+
+# VENDAS DE JOGOS POR GÊNERO (JP)
+plt.style.use('seaborn-v0_8-darkgrid')
+
+sales_by_genre = df.groupby('Genre')['JP_Sales'].sum().reset_index()
+sales_by_genre = sales_by_genre.sort_values(by='JP_Sales', ascending=False)
+
+colors = sns.color_palette("coolwarm", len(sales_by_genre))
+
+plt.figure(figsize=(12, 6))
+barplot = sns.barplot(x='Genre', y='JP_Sales', data=sales_by_genre, hue='Genre', palette=colors)
+
+plt.title('Vendas de Jogos por Gênero (JP)', fontsize=16, fontweight='bold')
+plt.xlabel('Gênero', fontsize=12)
+plt.ylabel('Vendas Totais no JP (Milhões)', fontsize=12)
+
+plt.xticks(rotation=45, ha='right')
+
+for index, value in enumerate(sales_by_genre['JP_Sales']):
+    barplot.text(index, value + 0.05, f'{value:.2f}', color='black', ha="center", fontsize=10)
+
+plt.tight_layout()
+
+plt.show()
+
 # VENDAS GLOBAIS AO LONGO DO TEMPO
 sales_over_time = df.groupby('Year')['Global_Sales'].sum().reset_index()
 
